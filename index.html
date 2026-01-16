@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chopperla Santosh | PortFolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS Reset & Variables --- */
+        :root {
+            /* LIGHT THEME (Default) */
+            --bg-color: #F7F7F5;
+            --text-main: #1F2937;
+            --text-muted: #52525b;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --tag-bg: #F3F4F6;
+            --accent-blue: #3B82F6;
+            --icon-color: #4B5563;
+            --toggle-bg: #FFFFFF;
+        }
+
+        /* DARK THEME OVERRIDES */
+        body.dark-mode {
+            --bg-color: #111111;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --card-bg: #1C1C1C;
+            --border-color: #2D2D2D;
+            --tag-bg: #27272a;
+            --icon-color: #D1D5DB;
+            --toggle-bg: #27272a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 4rem;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            position: relative;
+        }
+
+        section {
+            margin-bottom: 3.5rem;
+        }
+
+        /* --- Typography --- */
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.04em;
+        }
+
+        h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-decoration: underline;
+            text-decoration-color: var(--border-color);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 2px solid var(--border-color);
+            transition: all 0.2s;
+            font-weight: 700;
+        }
+
+        a:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .handle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        /* --- Avatar --- */
+        .avatar-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            image-rendering: -webkit-optimize-contrast;
+            transform: translateZ(0);
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--card-bg);
+            padding: 1.75rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+            border-color: var(--text-muted);
+        }
+
+        /* --- Skills Tags --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+        }
+
+        .skill-tag {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .skill-tag i {
+            font-size: 1.1rem;
+            color: var(--icon-color);
+        }
+
+        /* --- Projects Tags --- */
+        .tech-stack {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 1.25rem;
+        }
+
+        .tech-pill {
+            background-color: var(--tag-bg);
+            color: var(--text-muted);
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- Dark Mode Toggle --- */
+        .theme-toggle {
+            position: absolute;
+            top: 4rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--toggle-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* --- Footer Styles --- */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .footer-link {
+            font-size: 1.75rem;
+            color: var(--text-muted);
+            border-bottom: none; /* Remove default underline */
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--text-main);
+            transform: translateY(-2px);
+            border-bottom: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <button class="theme-toggle" id="theme-btn" aria-label="Toggle Dark Mode">
+            <i class="ri-moon-clear-line"></i>
+        </button>
+
+        <header class="hero">
+            <div class="avatar-container">
+                <img src="image.png" alt="Chopperla Santosh" class="avatar">
+            </div>
+            <h1>Chopperla Santosh</h1>
+            <span class="handle">@chSantosh</span>
+            <p>
+                Software developer and Electronics and Communication undergraduate.
+                Interested in backend engineering, AI applications, and system design.
+                Building production focused projects to strengthen engineering fundamentals.
+            </p>
+        </header>
+
+        <section>
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-tag"><i class="ri-javascript-line"></i> JavaScript</div>
+                <div class="skill-tag"><i class="ri-reactjs-line"></i> React Js</div>
+                <div class="skill-tag"><i class="ri-code-s-slash-line"></i> Python</div>
+                <div class="skill-tag"><i class="ri-flashlight-line"></i> FastAPI</div>
+                <div class="skill-tag"><i class="ri-server-line"></i> Golang</div>
+                <div class="skill-tag"><i class="ri-brackets-line"></i> C/C++</div>
+                <div class="skill-tag"><i class="ri-terminal-box-line"></i> CLI Development</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Featured Projects</h2>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>E-Commerce Platform</h3>
+                    <i class="ri-arrow-right-up-line" style="font-size: 1.2rem; color: var(--text-muted);"></i>
+                </div>
+                <p>A full-stack e-commerce solution with payment integration, inventory management, and real-time
+                    analytics.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">React</span>
+                    <span class="tech-pill">Node.js</span>
+                    <span class="tech-pill">PostgreSQL</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <h3>Design System Library</h3>
+                    <i class="ri-arrow-right-up-line" style="font-size: 1.2rem; color: var(--text-muted);"></i>
+                </div>
+                <p>A comprehensive component library with 50+ reusable components, accessibility-first approach.</p>
+                <div class="tech-stack">
+                    <span class="tech-pill">TypeScript</span>
+                    <span class="tech-pill">Storybook</span>
+                    <span class="tech-pill">Figma</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <a href="https://github.com/WebProject05" class="footer-link" target="_blank" aria-label="GitHub">
+                <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/chopperla-santosh-29835431b/" class="footer-link" target="_blank" aria-label="LinkedIn">
+                <i class="ri-linkedin-fill"></i>
+            </a>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- Dark Mode Logic ---
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = themeBtn.querySelector('i');
+        const body = document.body;
+
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.replace('ri-moon-clear-line', 'ri-sun-line');
+        }
+
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('ri-moon-clear-line', 'ri-sun-line');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('ri-sun-line', 'ri-moon-clear-line');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
