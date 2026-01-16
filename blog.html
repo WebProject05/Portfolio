@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chopperla Santosh | Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        /* PASTE THE CSS FROM INDEX.HTML HERE */
+        :root { --bg-color: #F7F7F5; --header-bg: rgba(247, 247, 245, 0.85); --text-main: #1F2937; --text-muted: #52525b; --card-bg: #FFFFFF; --border-color: #E5E7EB; --tag-bg: #F3F4F6; --accent-blue: #3B82F6; --icon-color: #4B5563; --toggle-bg: #FFFFFF; }
+        body.dark-mode { --bg-color: #111111; --header-bg: rgba(17, 17, 17, 0.85); --text-main: #F3F4F6; --text-muted: #9CA3AF; --card-bg: #1C1C1C; --border-color: #2D2D2D; --tag-bg: #27272a; --icon-color: #D1D5DB; --toggle-bg: #27272a; }
+        body, .sticky-header, .card, .skill-tag, .tech-pill, .theme-toggle, .footer-link, .avatar, h1, h2, h3, p, span, i, a, .nav-link { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'JetBrains Mono', monospace; font-weight: 500; line-height: 1.6; }
+        .container { max-width: 680px; margin: 0 auto; padding: 0 1.5rem 4rem 1.5rem; }
+        section { margin-bottom: 3.5rem; }
+        .sticky-header { position: sticky; top: 0; z-index: 100; height: 80px; display: flex; align-items: center; justify-content: space-between; background-color: var(--header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); margin-bottom: 2rem; border-bottom: 1px solid transparent; }
+        .header-left { display: flex; align-items: center; gap: 1.5rem; }
+        
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; border: none; font-weight: 700; }
+        .nav-link:hover, .nav-link.active { color: var(--text-main); }
+        .theme-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-main); font-size: 1.2rem; }
+        h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.25rem; letter-spacing: -0.04em; }
+        p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .card { background: var(--card-bg); padding: 1.75rem; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 1.25rem; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.06); border-color: var(--text-muted); }
+        h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; display: block; }
+        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 2rem; }
+        .footer-link { font-size: 1.75rem; color: var(--text-muted); text-decoration: none; }
+        .footer-link:hover { color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sticky-header">
+            <div class="header-left">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="blog.html" class="nav-link active">Blog</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+            </div>
+            <button class="theme-toggle" id="theme-btn"><i class="ri-moon-clear-line"></i></button>
+        </nav>
+
+        <header style="margin-bottom: 3rem;">
+            <h1>Writing</h1>
+            <p>Thoughts on software engineering, system design, and learning.</p>
+        </header>
+
+        <section>
+            <a href="#" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <span class="date">Oct 12, 2025</span>
+                    <h3>Understanding Golang Concurrency</h3>
+                    <p style="margin-bottom: 0;">A deep dive into Goroutines, Channels, and how Go handles concurrent execution patterns efficiently.</p>
+                </div>
+            </a>
+
+            <a href="#" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <span class="date">Sep 05, 2025</span>
+                    <h3>Designing Scalable APIs</h3>
+                    <p style="margin-bottom: 0;">Best practices for versioning, rate limiting, and structuring RESTful services for high availability.</p>
+                </div>
+            </a>
+            
+             <a href="#" style="text-decoration: none; color: inherit;">
+                <div class="card">
+                    <span class="date">Aug 22, 2025</span>
+                    <h3>Why I switched to Vim</h3>
+                    <p style="margin-bottom: 0;">The journey of learning modal editing and how it improved my coding speed and workflow.</p>
+                </div>
+            </a>
+        </section>
+
+        <footer class="footer">
+            <a href="#" class="footer-link"><i class="ri-github-fill"></i></a>
+            <a href="#" class="footer-link"><i class="ri-linkedin-fill"></i></a>
+        </footer>
+    </div>
+
+    <script>
+        const themeBtn = document.getElementById('theme-btn');
+        const body = document.body;
+        const icon = themeBtn.querySelector('i');
+        if(localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); icon.classList.replace('ri-moon-clear-line', 'ri-sun-line'); }
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            icon.className = isDark ? 'ri-sun-line' : 'ri-moon-clear-line';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
