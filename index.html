@@ -1,186 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chopperla Santosh | Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chopperla Santosh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F5F2;
+  --surface: #EFECE7;
+  --border: #E0DDD7;
+  --text: #181715;
+  --muted: #7A7770;
+  --accent: #BF4E20;
+  --accent2: #2A5C8A;
+  --mono: 'Syne', sans-serif;
+  --sans: 'DM Sans', sans-serif;
+  --radius: 16px;
+}
+body.dark {
+  --bg: #100F0D;
+  --surface: #1C1B18;
+  --border: #2C2A26;
+  --text: #F0EDE8;
+  --muted: #8A8780;
+  --accent: #D4622C;
+  --accent2: #4A85B8;
+}
 
-    <style>
-        /* --- SHARED CSS --- */
-        :root {
-            --bg-color: #F7F7F5;
-            --header-bg: rgba(247, 247, 245, 0.85);
-            --text-main: #1F2937;
-            --text-muted: #52525b;
-            --card-bg: #FFFFFF;
-            --border-color: #E5E7EB;
-            --tag-bg: #F3F4F6;
-            --accent-blue: #3B82F6;
-            --icon-color: #4B5563;
-            --toggle-bg: #FFFFFF;
-        }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-        body.dark-mode {
-            --bg-color: #111111;
-            --header-bg: rgba(17, 17, 17, 0.85);
-            --text-main: #F3F4F6;
-            --text-muted: #9CA3AF;
-            --card-bg: #1C1C1C;
-            --border-color: #2D2D2D;
-            --tag-bg: #27272a;
-            --icon-color: #D1D5DB;
-            --toggle-bg: #27272a;
-        }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.65;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
 
-        /* Transition Fix */
-        body, .sticky-header, .card, .skill-tag, .tech-pill, .theme-toggle, .footer-link, .avatar, h1, h2, h3, p, span, i, a, .nav-link {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+/* ─── AMBIENT BACKGROUND ─── */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  animation: orbFloat linear infinite;
+}
+body.dark .orb { opacity: 0.12; }
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #BF4E20 0%, transparent 70%);
+  top: -10%; left: -15%;
+  animation-duration: 28s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #2A5C8A 0%, transparent 70%);
+  bottom: 5%; right: -10%;
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #BF4E20 0%, transparent 70%);
+  top: 50%; left: 60%;
+  animation-duration: 35s;
+  opacity: 0.08;
+}
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(30px, -40px) scale(1.05); }
+  50%  { transform: translate(60px, 20px) scale(0.97); }
+  75%  { transform: translate(20px, 50px) scale(1.03); }
+  100% { transform: translate(0, 0) scale(1); }
+}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'JetBrains Mono', monospace; font-weight: 500; line-height: 1.6; }
-        .container { max-width: 680px; margin: 0 auto; padding: 0 1.5rem 4rem 1.5rem; }
-        section { margin-bottom: 3.5rem; }
+/* ─── LAYOUT ─── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
 
-        /* HEADER & NAV */
-        .sticky-header {
-            position: sticky; top: 0; z-index: 100; height: 80px;
-            display: flex; align-items: center; justify-content: space-between;
-            background-color: var(--header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            margin-bottom: 2rem; border-bottom: 1px solid transparent;
-        }
-        .sticky-header.scrolled { border-bottom-color: var(--border-color); }
-        
-        .header-left { display: flex; align-items: center; gap: 1.5rem; }
+/* ─── HEADER ─── */
+header.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+  background: transparent;
+  transition: background 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+header.site-header.scrolled {
+  background: rgba(247,245,242,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--border);
+}
+body.dark header.site-header.scrolled {
+  background: rgba(16,15,13,0.85);
+}
 
-        /* Navigation Links */
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-link { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; border: none; font-weight: 700; }
-        .nav-link:hover, .nav-link.active { color: var(--text-main); }
+nav { display: flex; gap: 0.15rem; align-items: center; }
+.nav-link {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover { color: var(--text); background: var(--surface); }
+.nav-link.active { color: var(--text); }
 
-        .theme-toggle { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-main); font-size: 1.2rem; }
-        
-        /* GENERAL STYLES */
-        h1 { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.25rem; letter-spacing: -0.04em; }
-        h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1.25rem; font-weight: 700; }
-        h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; text-decoration: underline; text-decoration-color: var(--border-color); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-        p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
-        
-        /* AVATAR */
-        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; display: block; border: 3px solid var(--card-bg); box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin: 1rem 0 1.5rem 0; }
-        .handle { color: var(--text-muted); font-size: 0.9rem; display: block; margin-bottom: 1.5rem; }
+.theme-btn {
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.95rem;
+  transition: color 0.2s, background 0.2s;
+}
+.theme-btn:hover { color: var(--text); }
 
-        /* CARDS & TAGS */
-        .card { background: var(--card-bg); padding: 1.75rem; border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 1.25rem; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.06); border-color: var(--text-muted); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
-        
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 0.85rem; }
-        .skill-tag { background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.6rem 1rem; border-radius: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
-        .skill-tag:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
-        .skill-tag i { font-size: 1.1rem; color: var(--icon-color); }
+/* ─── HERO ─── */
+.hero {
+  padding: 4rem 0 3rem;
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
 
-        .tech-stack { display: flex; gap: 0.6rem; margin-top: 1.25rem; }
-        .tech-pill { background-color: var(--tag-bg); color: var(--text-muted); padding: 0.3rem 0.7rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
 
-        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: center; gap: 2rem; }
-        .footer-link { font-size: 1.75rem; color: var(--text-muted); text-decoration: none; border:none; }
-        .footer-link:hover { color: var(--text-main); transform: translateY(-2px); }
-    </style>
+.hero-name {
+  font-family: var(--mono);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+
+.hero-bio {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.8; transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+/* ─── DIVIDER ─── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+section {
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.18s; }
+section:nth-child(3) { animation-delay: 0.26s; }
+section:nth-child(4) { animation-delay: 0.34s; }
+
+/* ─── SKILLS ─── */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.skill-chip:hover { border-color: var(--accent); transform: translateY(-1px); }
+.skill-chip i { font-size: 0.95rem; color: var(--muted); }
+
+/* ─── PROJECTS ─── */
+.project-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s, transform 0.25s cubic-bezier(0.22,1,0.36,1);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.project-card:hover::before { opacity: 0.04; }
+
+.project-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.project-title {
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.project-arrow { color: var(--muted); font-size: 1rem; flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(2px, -2px); }
+.project-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; font-weight: 300; }
+
+.pill-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.pill {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* ─── INTERESTS ─── */
+.interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.interest-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.interest-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.interest-icon { font-size: 1.25rem; color: var(--accent); margin-bottom: 0.65rem; display: block; }
+.interest-title { font-family: var(--mono); font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+.interest-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+/* ─── FOOTER ─── */
+footer.site-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 1.75rem;
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+.footer-links { display: flex; gap: 0.25rem; }
+.footer-icon { font-size: 1.1rem; color: var(--muted); text-decoration: none; padding: 0.4rem; transition: color 0.2s; border-radius: 6px; }
+.footer-icon:hover { color: var(--text); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  .interest-grid { grid-template-columns: 1fr; }
+  .hero-name { font-size: 2rem; }
+}
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <nav class="sticky-header" id="sticky-header">
-            <div class="header-left">
-                <div class="nav-links">
-                    <a href="index.html" class="nav-link active">Home</a>
-                    <a href="blog.html" class="nav-link">Blog</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </div>
-            </div>
-            <button class="theme-toggle" id="theme-btn"><i class="ri-moon-clear-line"></i></button>
-        </nav>
+<!-- Ambient Background -->
+<div class="ambient-bg">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
 
-        <header class="hero">
-            <img src="image.png" alt="Chopperla Santosh" class="avatar">
-            <h1 id="hero-name">Chopperla Santosh</h1>
-            <span class="handle">@chSantosh</span>
-            <p>Software developer and Electronics and Communication undergraduate. Interested in backend engineering, AI applications, and system design.</p>
-        </header>
+<div class="wrap">
+  <header class="site-header" id="hdr">
+    <nav>
+      <a href="index.html" class="nav-link active">home</a>
+      <a href="blog.html" class="nav-link">blog</a>
+      <a href="contact.html" class="nav-link">contact</a>
+    </nav>
+    <button class="theme-btn" id="theme-btn"><i class="ri-moon-line"></i></button>
+  </header>
 
-        <section>
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-tag"><i class="ri-javascript-line"></i> JavaScript</div>
-                <div class="skill-tag"><i class="ri-reactjs-line"></i> React Js</div>
-                <div class="skill-tag"><i class="ri-code-s-slash-line"></i> Python</div>
-                <div class="skill-tag"><i class="ri-flashlight-line"></i> FastAPI</div>
-                <div class="skill-tag"><i class="ri-server-line"></i> Golang</div>
-                <div class="skill-tag"><i class="ri-brackets-line"></i> C/C++</div>
-                <div class="skill-tag"><i class="ri-terminal-box-line"></i> CLI Development</div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Featured Projects</h2>
-            <a href="https://github.com/WebProject05/GoShot" style="text-decoration: none;">
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: start;">
-                        <h3 style="color: var(--text-main);">GoShot - CLI code ScreenShotter</h3>
-                        <i class="ri-arrow-right-up-line" style="font-size: 1.2rem; color: var(--text-muted);"></i>
-                    </div>
-                    <p>GoShot is a CLI tool that converts source code into beautiful, high quality screenshots with syntax highlighting and a macOS style window frame.</p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">Golang</span>
-                    </div>
-                </div>
-            </a>
-            <a href="#" style="text-decoration: none;">
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: start;">
-                        <h3 style="color: var(--text-main);">Design System Library</h3>
-                        <i class="ri-arrow-right-up-line" style="font-size: 1.2rem; color: var(--text-muted);"></i>
-                    </div>
-                    <p>A comprehensive component library with 50+ reusable components.</p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">TypeScript</span><span class="tech-pill">Storybook</span>
-                    </div>
-                </div>
-            </a>
-        </section>
-
-        <footer class="footer">
-            <a href="#" class="footer-link"><i class="ri-github-fill"></i></a>
-            <a href="#" class="footer-link"><i class="ri-linkedin-fill"></i></a>
-        </footer>
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Software Developer · ECE Undergraduate</p>
+    <h1 class="hero-name">Chopperla Santosh</h1>
+    <p class="hero-bio">Building reliable systems at scale. I care about backend engineering, distributed systems, and how AI gets wired into production infrastructure.</p>
+    <div class="hero-cta">
+      <a href="contact.html" class="btn-primary"><i class="ri-mail-line"></i> Get in touch</a>
+      <a href="blog.html" class="btn-ghost"><i class="ri-article-line"></i> Read blog</a>
     </div>
+  </div>
 
-    <script>
-        // Theme Logic
-        const themeBtn = document.getElementById('theme-btn');
-        const body = document.body;
-        const icon = themeBtn.querySelector('i');
-        if(localStorage.getItem('theme') === 'dark') { body.classList.add('dark-mode'); icon.classList.replace('ri-moon-clear-line', 'ri-sun-line'); }
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            icon.className = isDark ? 'ri-sun-line' : 'ri-moon-clear-line';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
+  <!-- INTERESTS -->
+  <section>
+    <p class="section-label">Interests</p>
+    <div class="interest-grid">
+      <div class="interest-card">
+        <i class="ri-server-line interest-icon"></i>
+        <div class="interest-title">Backend Engineering</div>
+        <p class="interest-desc">APIs, service architecture, and the plumbing that keeps things fast under load.</p>
+      </div>
+      <div class="interest-card">
+        <i class="ri-git-branch-line interest-icon"></i>
+        <div class="interest-title">Distributed Systems</div>
+        <p class="interest-desc">Consensus, replication, fault tolerance — building systems that don't fall apart.</p>
+      </div>
+      <div class="interest-card">
+        <i class="ri-cpu-line interest-icon"></i>
+        <div class="interest-title">AI Engineering</div>
+        <p class="interest-desc">LLMs in real products — inference pipelines, RAG, and AI-native system design.</p>
+      </div>
+      <div class="interest-card">
+        <i class="ri-terminal-box-line interest-icon"></i>
+        <div class="interest-title">CLI Tools</div>
+        <p class="interest-desc">Developer tooling and low-level utilities that solve workflow problems elegantly.</p>
+      </div>
+    </div>
+  </section>
 
-        // Sticky Header Border Logic (Name toggle removed)
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                // Only toggles the border class now
-                document.getElementById('sticky-header').classList.toggle('scrolled', !entry.isIntersecting);
-            });
-        }, { rootMargin: "-20px 0px 0px 0px" });
-        observer.observe(document.getElementById('hero-name'));
-    </script>
+  <!-- STACK -->
+  <section>
+    <p class="section-label">Stack</p>
+    <div class="skills-grid">
+      <div class="skill-chip"><i class="ri-server-line"></i> Golang</div>
+      <div class="skill-chip"><i class="ri-code-s-slash-line"></i> Python</div>
+      <div class="skill-chip"><i class="ri-flashlight-line"></i> FastAPI</div>
+      <div class="skill-chip"><i class="ri-javascript-line"></i> JavaScript</div>
+      <div class="skill-chip"><i class="ri-reactjs-line"></i> React</div>
+      <div class="skill-chip"><i class="ri-brackets-line"></i> C / C++</div>
+      <div class="skill-chip"><i class="ri-terminal-box-line"></i> CLI Dev</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <p class="section-label">Projects</p>
+
+    <a href="https://github.com/WebProject05/GoShot" class="project-card">
+      <div class="project-header">
+        <span class="project-title">GoShot — CLI Code Screenshotter</span>
+        <i class="ri-arrow-right-up-line project-arrow"></i>
+      </div>
+      <p class="project-desc">A CLI tool that converts source code into beautiful screenshots with syntax highlighting and a macOS-style window frame. Built entirely in Go.</p>
+      <div class="pill-row">
+        <span class="pill">Golang</span>
+        <span class="pill">CLI</span>
+        <span class="pill">Image Rendering</span>
+      </div>
+    </a>
+
+    <a href="#" class="project-card">
+      <div class="project-header">
+        <span class="project-title">Design System Library</span>
+        <i class="ri-arrow-right-up-line project-arrow"></i>
+      </div>
+      <p class="project-desc">A component library with 50+ reusable, accessible UI components designed for consistency across products.</p>
+      <div class="pill-row">
+        <span class="pill">TypeScript</span>
+        <span class="pill">Storybook</span>
+        <span class="pill">React</span>
+      </div>
+    </a>
+  </section>
+
+  <footer class="site-footer">
+    <span class="footer-copy">© 2026 Chopperla Santosh</span>
+    <div class="footer-links">
+      <a href="#" class="footer-icon"><i class="ri-github-fill"></i></a>
+      <a href="#" class="footer-icon"><i class="ri-linkedin-fill"></i></a>
+      <a href="https://medium.com/@ch.santosh2021" class="footer-icon"><i class="ri-medium-fill"></i></a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const btn = document.getElementById('theme-btn');
+  const icon = btn.querySelector('i');
+  if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); icon.className = 'ri-sun-line'; }
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const dark = document.body.classList.contains('dark');
+    icon.className = dark ? 'ri-sun-line' : 'ri-moon-line';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  });
+  window.addEventListener('scroll', () => {
+    document.getElementById('hdr').classList.toggle('scrolled', window.scrollY > 10);
+  });
+</script>
 </body>
 </html>
